@@ -1,0 +1,26 @@
+#rotate90 {
+/*General*/
+transform: rotate(0deg);
+/*Firefox*/
+-moz-transform: rotate(0deg);
+/*Microsoft Internet Explorer*/
+-ms-transform: rotate(0deg);
+/*Chrome, Safari*/
+/*-webkit-transform: rotate(0deg);*/
+/*Opera*/
+-o-transform: rotate(0deg);
+}
+
+#bodyBG{ 
+    width: 100%;  
+    height: 100%;  
+    position: absolute;  
+    left: 0px;  
+    top: 0px;  
+    z-index: 0; 
+} 
+ 
+.stretch { 
+    width:100%; 
+    height:100%; 
+} 
