@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	
     
-    <link href="{{ url_for('static', filename='css/remote_control.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url_for('static', filename='css/program_control.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url_for('static, filename='css/body.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/remote_control.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/program_control.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/body.css" rel="stylesheet" type="text/css"/>
 	
-    <script src="{{ url_for('static', filename='js/remote_control.js' }}"> </script>
-    <script src="{{ url_for('static', filename='js/orient.js' }}"> </script>
+    <script src="/static/js/remote_control.js"> </script>
+    <script src="/static/js/orient.js"> </script>
     <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
     <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -->
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="/static/css/swiper.min.css" />
 
     <!-- Demo styles -->
     <style>
@@ -58,7 +58,7 @@
 </head>
 <body id="rotate90">
 	<div id="bodyBG">
-		<img src="image/Resource/Common/bg_5.jpg" class="stretch"  alt=""/>	
+		<img src="/static/image/Resource/Common/bg_5.jpg" class="stretch"  alt=""/>	
 	</div>
     <!-- Swiper -->
     <div class="swiper-container">
@@ -73,23 +73,23 @@
 				</div>
 				<div class="line1">
 					<div class="line1_img">
-						<img class="line1_img1" src="./image/Resource/TVRemoteControl/btn_home_normal.png"   onClick="clickButton()"/>
-						<img class="line1_img2" src="./image/Resource/TVRemoteControl/btn_turn_off.png"   onClick="clickButton()"/>
-						<img class="line1_img3" src="./image/Resource/TVRemoteControl/btn_menu_normal.png"  onClick="clickButton()"/>			
+						<img class="line1_img1" src="/static/image/Resource/TVRemoteControl/btn_home_normal.png"   onClick="clickButton()"/>
+						<img class="line1_img2" src="/static/image/Resource/TVRemoteControl/btn_turn_off.png"   onClick="clickButton()"/>
+						<img class="line1_img3" src="/static/image/Resource/TVRemoteControl/btn_menu_normal.png"  onClick="clickButton()"/>			
 					</div>		
 				</div>
 				<div class="line2">
 					<div class="line2_0">
-					    <img  class="line2_1" src="./image/Resource/TVRemoteControl/remote_back.png" width="160" height="160">
-			   		    <img  class="line2_2" src="./image/Resource/TVRemoteControl/ok_press.jpg" width="100" height="100">	
-                        		    <img class="line2_dot1" src="./image/Resource/TVRemoteControl/point_full.png">
-                                            <img class="line2_dot2" src="./image/Resource/TVRemoteControl/point_full.png">
-             			            <img class="line2_dot3" src="./image/Resource/TVRemoteControl/point_full.png">
-                                            <img class="line2_dot4" src="./image/Resource/TVRemoteControl/point_full.png">       
+					    <img  class="line2_1" src="/static/image/Resource/TVRemoteControl/remote_back.png" width="160" height="160">
+			   		    <img  class="line2_2" src="/static/image/Resource/TVRemoteControl/ok_press.jpg" width="100" height="100">	
+                        		    <img class="line2_dot1" src="/static/image/Resource/TVRemoteControl/point_full.png">
+                                            <img class="line2_dot2" src="/static/image/Resource/TVRemoteControl/point_full.png">
+             			            <img class="line2_dot3" src="/static/image/Resource/TVRemoteControl/point_full.png">
+                                            <img class="line2_dot4" src="/static/image/Resource/TVRemoteControl/point_full.png">       
 					</div>			
 				</div>
 				<div class="line3">
-                 	            <img src="./image/Resource/TVRemoteControl/btn_back_press.png" width="60" height="60">
+                 	            <img src="/static/image/Resource/TVRemoteControl/btn_back_press.png" width="60" height="60">
                                 </div>	
 				<div class="line4">
 					<p> <font size="-1" color="#000000">使用手机音量键调节节目音量 </font> </p>
@@ -105,9 +105,9 @@
 			<!-- 顶部按钮 -->
 			<div class="line1">
 			    <div class="line1_img">
-				<img class="line1_img1" src="./image/Resource/TVRemoteControl/btn_mute_normal.png" width="55" height="50"/>	
-				<img src="./image/Resource/TVRemoteControl/btn_turn_off.png" width="55" height="50"/>		
-				<img class="line1_img3" src="./image/Resource/TVRemoteControl/tv_btn_normal.png" width="55" height="50"/>	
+				<img class="line1_img1" src="/static/image/Resource/TVRemoteControl/btn_mute_normal.png" width="55" height="50"/>	
+				<img src="/static/image/Resource/TVRemoteControl/btn_turn_off.png" width="55" height="50"/>		
+				<img class="line1_img3" src="/static/image/Resource/TVRemoteControl/tv_btn_normal.png" width="55" height="50"/>	
 			    </div>
 			</div>
 			
@@ -115,23 +115,23 @@
 		   <!-- 中间按钮 -->
            	<div class="middle">
                 	<div class="middle_0">
-                	     <img id="middle_1" src="./image/Resource/TVRemoteControl/rect_round.png" width="55" height="130"/>
-                             <img id="middle_1_up" src="./image/Resource/TVRemoteControl/btn_up_normal.png" />  
-                             <img id="middle_1_down" src="./image/Resource/TVRemoteControl/btn_down_normal.png"/>
-                             <img id="middle_2" src="./image/Resource/TVRemoteControl/rect_round.png" width="55px" height="130px"/>
-                             <img id="middle_2_program" src="./image/Resource/TVRemoteControl/program_normal.png"/ > 
+                	     <img id="middle_1" src="/static/image/Resource/TVRemoteControl/rect_round.png" width="55" height="130"/>
+                             <img id="middle_1_up" src="/static/image/Resource/TVRemoteControl/btn_up_normal.png" />  
+                             <img id="middle_1_down" src="/static/image/Resource/TVRemoteControl/btn_down_normal.png"/>
+                             <img id="middle_2" src="/static/image/Resource/TVRemoteControl/rect_round.png" width="55px" height="130px"/>
+                             <img id="middle_2_program" src="/static/image/Resource/TVRemoteControl/program_normal.png"/ > 
 		       </div>
 		</div>
 			<!-- 底部按钮 -->
 		<div class="program_bottom">
-			<img  src="./image/Resource/TVRemoteControl/btn_num_normal.png" width="60px" height="60px"/>						     </div>
+			<img  src="/static/image/Resource/TVRemoteControl/btn_num_normal.png" width="60px" height="60px"/>						     </div>
         </div>
     </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
 
     <!-- Swiper JS -->
-    <script src="js/swiper.min.js"></script>
+    <script src="/static/js/swiper.min.js"></script>
 
     <!-- Initialize Swiper -->
     <script>

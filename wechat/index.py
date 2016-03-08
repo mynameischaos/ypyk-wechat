@@ -40,7 +40,7 @@ def wechat_auth():
 							{
 								'title': u'一拍遥控',
 								'description': u'属于您自己的遥控器',
-								'url': 'weixin.yipaiyaokong.com/ypyk-web/wechat/index.html'
+								'url': 'weixin.yipaiyaokong.com/index.html'
 							}	
 						]
 	
