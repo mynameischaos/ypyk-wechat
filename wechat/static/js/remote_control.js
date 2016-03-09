@@ -37,7 +37,7 @@ function playWAV(data){
 	src.src = data;
 }
 */
-function clickButton()
+function clickButton(obj, id)
 {
 
 	navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
@@ -49,8 +49,31 @@ function clickButton()
 	else{
 		navigator.vibrate(100);
 	}
-	var src = document.getElementById('playWAV');
-	//src.src = "http://weixin.yipaiyaokong.com/bit3wa.wav";
+	if(id === 'power_wav')
+	{
+		var src = document.getElementById('powerWAV');
+	}
+	else if(id === 'home_wav')
+	{
+		var src = document.getElementByIdf('homeWAV');
+	}
+	else if(id === 'up_wav')
+	{
+		var src = document.getElementById('upWAV');
+	}
+	else if(id === 'down_wav')
+	{
+		
+		var src = document.getElementById('downWAV')	
+	}
+	else if(id === 'left_wav')
+	{
+		var src = document.getElementById('leftWAV')
+	}
+	else if(id === 'right_wav')
+	{
+		var src = document.getElementById('rightWAV')
+	}
 	src.play();
 }
 

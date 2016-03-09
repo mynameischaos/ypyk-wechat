@@ -8,6 +8,7 @@ from wechat_sdk.messages import *
 from event_process import EventProcess
 from msg_process import MsgProcess
 from tool import download_picture
+from tool import get_wavFile
 import sys
 from wechat_sdk import WechatConf
 
@@ -66,8 +67,20 @@ def wechat_auth():
 
 @app.route('/index.html/')
 def return_index():
-	power_wav = url_for('static', filename='media/bit3wa.wav')
-	return render_template('index.html', power_wav=power_wav)
+	btnName_pos = get_wavFile.create_wavFile('TV', 'xiaomi', '小米电视')
+	power_wav = url_for('static', filename=get_wavFile.find_pos('POWER', btnName_pos))
+	up_wav = url_for('static', filename=get_wavFile.find_pos('UP', btnName_pos))
+	down_wav = url_for('static', filename=get_wavFile.find_pos('DOWN', btnName_pos))
+	left_wav = url_for('static', filename=get_wavFile.find_pos('LEFT', btnName_pos))
+	right_wav = url_for('static', filename=get_wavFile.find_pos('RIGHT', btnName_pos))
+	home_wav = url_for('static', filename=get_wavFile.find_pos('HOME', btnName_pos))
+	return render_template('index.html',
+						 power_wav=power_wav,
+						 up_wav=up_wav,
+						 down_wav=down_wav,
+						 left_wav=left_wav,
+						 home_wav=home_wav,
+						 right_wav=right_wav)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)
