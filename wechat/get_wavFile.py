@@ -6,6 +6,7 @@ import os
 import hashlib
 import time
 import urllib2
+import datetime
 
 # 获取遥控器的红外编码
 def get_encode(type, brand, model):
@@ -25,25 +26,6 @@ def get_encode(type, brand, model):
 	#print res
 	res_dict = eval(res)
 	return res_dict
-
-		
-	
-# 获取wav文件地址
-#!/usr/local/bin/python
-# coding=utf-8
-import os
-import hashlib
-import time
-import datetime
-
-
-#!/usr/local/bin/python
-# coding=utf-8
-import os
-import hashlib
-import time
-import datetime
-
 
 def wav_file_gen(encoding_type, ir_code, frequency, signal_strength, btn_name, brand):
 
