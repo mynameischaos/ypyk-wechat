@@ -46,39 +46,44 @@ menu = {
             ]
         },
         {
-            "name": "扫码发图",
+            "name": "下载应用",
             "sub_button": [
                 {
-                    "type": "scancode_waitmsg",
-                    "name": "扫码带提示",
-                    "key": "rselfmenu_0_0"
+                    "type": "click",
+                    "name": "购买PI",
+                    "key": "buy_pi"
                 },
                 {
-                    "type": "scancode_push",
-                    "name": "扫码推事件",
-                    "key": "rselfmenu_0_1"
+                    "type": "click",
+                    "name": "下载App",
+                    "key": "download_app"
                 },
-                {
-                    "type": "pic_sysphoto",
-                    "name": "系统拍照发图",
-                    "key": "rselfmenu_1_0"
-                },
-                {
-                    "type": "pic_photo_or_album",
-                    "name": "拍照或相册发图",
-                    "key": "rselfmenu_1_1"
-                },
-                {
-                    "type": "pic_weixin",
-                    "name": "微信相册发图",
-                    "key": "rselfmenu_1_2"
-                }
             ]
         },
         {
-            "name": "发送位置",
-            "type": "location_select",
-            "key": "rselfmenu_2_0"
+            "name": "用户服务",
+            "sub_button": [
+                {
+                    "type": "view",
+                    "name": "关于我们",
+					"url" : "http://www.yipaiyaokong.com"
+                },
+                {
+                    "type": "view",
+                    "name": "反馈建议",
+					"url" : "http://www.yipaiyaokong.com"
+                },
+                {
+                    "type": "click",
+                    "name": "使用指南",
+                    "key": "instruction"
+                },
+                {
+                    "type": "click",
+                    "name": "投资加盟",
+                    "key": "investment"
+                },
+            ]
         }
     ]
 }
@@ -88,3 +93,4 @@ if res['errmsg'] == 'ok':
 	print '创建菜单成功!'
 else:
 	print '创建菜单失败!'
+	print res

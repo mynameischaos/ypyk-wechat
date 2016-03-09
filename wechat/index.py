@@ -6,6 +6,7 @@ import hashlib
 from wechat_sdk import WechatBasic
 from wechat_sdk.messages import *
 from event_process import EventProcess
+from msg_process import MsgProcess
 from tool import download_picture
 import sys
 
@@ -39,28 +40,26 @@ def wechat_auth():
 			message = wechat.get_message()
 			# 消息内容为文本
 			if isinstance(message, TextMessage):
-				response = wechat.response_text(message)
+				mp = MsgProcess()
+				content = mp.msg_process(message)
+				response = wechat.response_text(content)
 			# 消息内容为图片
 			elif isinstance(message, ImageMessage):
 				picurl = message.picurl
-				media_id = message.media_id
+				#media_id = message.media_id
 				download_picture.get(picurl)		
 				response = wechat.response_text('上传成功！')
 			# 消息内容为事件
 			elif isinstance(message, EventMessage):
-				if message.type == 'click':
-					ep = EventProcess()
-					content = ep.click_event(message.key)
-				#if message.type == 'click':
-				#	if message.key == 'television':
-				#		content = '请输入TV类型'
+				ep = EventProcess()
+				content = ep.click_event(message)
 				response = wechat.response_text(content)
 
 		return make_response(response.encode('utf-8'))
 
 
 @app.route('/index.html/')
-def hello():
+def return_index():
 	return render_template('index.html')
 
 if __name__ == '__main__':
