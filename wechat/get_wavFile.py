@@ -29,36 +29,74 @@ def get_encode(type, brand, model):
 		
 	
 # 获取wav文件地址
+#!/usr/local/bin/python
+# coding=utf-8
+import os
+import hashlib
+import time
+import datetime
+
+
+#!/usr/local/bin/python
+# coding=utf-8
+import os
+import hashlib
+import time
+import datetime
+
+
 def wav_file_gen(encoding_type, ir_code, frequency, signal_strength, btn_name, brand):
 
     # Name
     md_lib = hashlib.md5()
+
+    today = datetime.date.today()
+    today_str = str(today)
+    md_lib.update(today_str)
+    today_name = (md_lib.hexdigest())[0:10]
+
     wav_src = btn_name + time.strftime('%Y%m%d', time.localtime(time.time()))
     md_lib.update(wav_src)
     wav_name = (md_lib.hexdigest())[0:10]
+
     brand_src = brand + time.strftime('%m%d', time.localtime(time.time()))
     md_lib.update(brand_src)
     brand_name = (md_lib.hexdigest())[0:10]
 
     # Path
     path_brand = brand_name + "/"
-    path_header = "/var/www/weixin/wechat/WAV/"
+    path_header = "/var/www/weixin/wechat/static/media/"
+    today_folder = path_header + today_name + "/"
 
     # File
-    raw_data = path_header + path_brand + wav_name
+    raw_data = today_folder + path_brand + wav_name
     pcm_file = raw_data + ".pcm"
     wav_file = raw_data + ".wav"
+    relative_wav_file = "media/" + today_name + "/" + path_brand + wav_name + ".wav"
+
+    # Delete Older Path
+    for day in range(1, 6):
+        date_src = str(today - datetime.timedelta(days=day))
+        print date_src
+        md_lib.update(date_src)
+        old_date_name = (md_lib.hexdigest())[0:10]
+        print old_date_name
+        old_name = path_header + old_date_name
+        if os.path.isdir(old_name):
+            rm_older = "rm -rf " + old_name
 
     # If File Exist
     if os.path.exists(wav_file):
-        return wav_file
+        return relative_wav_file
     else:
         # Command
-        mkdir = "mkdir -p " + path_header + path_brand
+        mkdir = "mkdir -p " + today_folder + path_brand
         raw_data_gen = "rawDataGen " + encoding_type + " '" + ir_code + "' " + frequency + " " + signal_strength
-        ffmpeg = "ffmpeg -y -f s16be -ar 44.1k -ac 2 -i " + pcm_file + " " + wav_file
+        print raw_data_gen
         xxd = "xxd -r -p " + raw_data + " " + pcm_file
-
+        print xxd
+        ffmpeg = "ffmpeg -y -f s16be -ar 44.1k -ac 2 -i " + pcm_file + " " + wav_file
+        print ffmpeg
         # Execute
         os.popen(mkdir)
         file_handler = open(raw_data, 'w')
@@ -66,7 +104,8 @@ def wav_file_gen(encoding_type, ir_code, frequency, signal_strength, btn_name, b
         file_handler.close()
         os.popen(xxd)
         os.popen(ffmpeg)
-    return wav_file
+    return relative_wav_file
+
 	
 # 解析按键的红外码
 '''
