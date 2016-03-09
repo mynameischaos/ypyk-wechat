@@ -19,3 +19,8 @@ def get_msg(obj):
 	data['type'] = type
 	fp.write(str(data) + '\n')
 	fp.close()
+
+# 返回用户的openid
+def get_openid(obj):
+	openid = obj.source
+	return openid 

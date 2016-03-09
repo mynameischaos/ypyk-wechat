@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding=utf-8
 
-from flask import Flask, request, make_response, render_template
+from flask import Flask, request, make_response, render_template, url_for
 import hashlib
 from wechat_sdk import WechatBasic
 from wechat_sdk.messages import *
@@ -9,6 +9,7 @@ from event_process import EventProcess
 from msg_process import MsgProcess
 from tool import download_picture
 import sys
+
 
 app = Flask(__name__)
 
@@ -40,9 +41,16 @@ def wechat_auth():
 			message = wechat.get_message()
 			# 消息内容为文本
 			if isinstance(message, TextMessage):
-				mp = MsgProcess()
-				content = mp.msg_process(message)
-				response = wechat.response_text(content)
+				#mp = MsgProcess()
+				#content = mp.msg_process(message)
+				content = []
+				if message.content == 'ypyk':
+					content = [{
+					'title': u'一拍遥控',
+					'description': u'点击属于您自己的遥控！',
+					'url': u'http://weixin.yipaiyaokong.com/index.html',
+					}]
+				response = wechat.response_news(content)
 			# 消息内容为图片
 			elif isinstance(message, ImageMessage):
 				picurl = message.picurl
@@ -60,7 +68,8 @@ def wechat_auth():
 
 @app.route('/index.html/')
 def return_index():
-	return render_template('index.html')
+	power_wav = url_for('static', filename='media/9aeb4c287b.wav')
+	return render_template('index.html', power_wav=power_wav)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)
