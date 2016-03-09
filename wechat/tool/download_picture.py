@@ -23,3 +23,4 @@ def get(url):
 
 if __name__ == '__main__':
 	get('http://mmbiz.qpic.cn/mmbiz/lILAOXFORh82yy2CeQ3cvcWPFFsQcQyibPU8WVBM91GeQonhc4U1D6vuGgDGQDOKjQJib9tavby7tqibDFo4iaz6iaw/0')
+	

@@ -82,7 +82,7 @@ def parse_button(str):
 		btnData = i.split('=')
 		btn['name'] = btnData[0]
 		btn['encoding_type'] = btnData[2]
-		btn['ir_code'] = btnData[3]	
+		btn['ir_code'] = btnData[3]
 		buttons.append(btn)
 	return buttons
 
@@ -90,9 +90,18 @@ def create_wavFile(type, brand, model):
 	res_dict = get_encode(type, brand, model)
 	buttons = parse_button(res_dict['Buttons'])
 	#wav_index = wav_file_gen('MiBox', '0 3CCC', str(res_dict['Frequency']), str(1), 'Power',res_dict['Brand'])
+	btnName_pos = []
 	for btn in buttons:
-		wav_file_gen(btn['encoding_type'], btn['ir_code'], str(res_dict['Frequency']), str(1), btn['name'], res_dict['Brand'])
+		position = wav_file_gen(btn['encoding_type'], btn['ir_code'], str(res_dict['Frequency']), str(1), btn['name'], res_dict['Brand'])
+		#print btn['name'] + position
+		data = {}
+		data['btnName'] = btn['name']
+		data['position'] = position
+		btnName_pos.append(data)
+	return btnName_pos
+		
 
 # 测试
 if __name__ == '__main__':
-	create_wavFile('TV', 'xiaomi', '小米电视')
+	print create_wavFile('TV', 'xiaomi', '小米电视')
+	

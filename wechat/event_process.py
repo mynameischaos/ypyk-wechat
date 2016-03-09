@@ -1,17 +1,18 @@
 #!/usr/bin/python
 # encoding=utf-8
 
-
-import get_user_basicMsg
+import sys
+from tool.get_user_msg import UserMsg
 
 class EventProcess:
 	def __init__(self):
-		pass
+		sys.path.append('tool')
 	def click_event(self, obj):
 		# 点击事件的处理
 		if obj.type == 'click':
 			if obj.key == 'television':
-				get_user_basicMsg.get_msg(obj)
+				um = UserMsg()
+				um.get_user_basicMsg(obj)
 				return '请输入TV品牌'
 			elif obj.key == 'air_condition':
 				return '请输入空调品牌'
@@ -22,5 +23,6 @@ class EventProcess:
 			else:
 				return '请求未处理'
 		else:
-			get_user_basicMsg.get_msg(obj)
+			um = UserMsg()
+			um.get_user_basicMsg(obj)
 			return '选择一拍，遥控世界！'

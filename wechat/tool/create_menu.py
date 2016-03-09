@@ -16,7 +16,6 @@ conf = WechatConf(
 from wechat_sdk import WechatBasic
 wechat = WechatBasic(conf=conf)
 
-
 # 定义菜单
 menu = {
 	"button": [

@@ -9,6 +9,7 @@ from event_process import EventProcess
 from msg_process import MsgProcess
 from tool import download_picture
 import sys
+from wechat_sdk import WechatConf
 
 
 app = Flask(__name__)
@@ -17,6 +18,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def wechat_auth():
+	reload(sys)
+	sys.setdefaultencoding('utf8')
 	TOKEN = 'yipaiyaokong' # your toke
 	query = request.args   # GET方法附上的参数
 	signature = query.get('signature', '')
@@ -25,6 +28,7 @@ def wechat_auth():
 	echostr = query.get('echostr', '')
 	sys.path.append('tool')
 
+	
 	if request.method == 'GET':
 		s = [timestamp, nonce, TOKEN]
 		s.sort()
@@ -32,8 +36,10 @@ def wechat_auth():
 		if(hashlib.sha1(s).hexdigest() == signature):
 			return make_response(echostr)
 	else:
+		
 		# 解析数据;回复消息
 		body_text = request.data
+		# 创建一个wechat对象
 		wechat = WechatBasic(token=TOKEN)
 		response = None
 		if wechat.check_signature(signature=signature,timestamp=timestamp, nonce=nonce):
@@ -41,16 +47,8 @@ def wechat_auth():
 			message = wechat.get_message()
 			# 消息内容为文本
 			if isinstance(message, TextMessage):
-				#mp = MsgProcess()
-				#content = mp.msg_process(message)
-				content = []
-				if message.content == 'ypyk':
-					content = [{
-					'title': u'一拍遥控',
-					'description': u'点击属于您自己的遥控！',
-					'url': u'http://weixin.yipaiyaokong.com/index.html',
-					}]
-				response = wechat.response_news(content)
+				mp = MsgProcess()
+				response = mp.msg_process(message, wechat)
 			# 消息内容为图片
 			elif isinstance(message, ImageMessage):
 				picurl = message.picurl
@@ -68,7 +66,7 @@ def wechat_auth():
 
 @app.route('/index.html/')
 def return_index():
-	power_wav = url_for('static', filename='media/9aeb4c287b.wav')
+	power_wav = url_for('static', filename='media/bit3wa.wav')
 	return render_template('index.html', power_wav=power_wav)
 
 if __name__ == '__main__':
