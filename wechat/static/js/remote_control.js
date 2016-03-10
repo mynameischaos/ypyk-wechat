@@ -39,7 +39,7 @@ function playWAV(data){
 */
 function clickButton(obj, id)
 {
-
+/*
 	navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 	if(navigator.vibrate === false)
 	{
@@ -49,13 +49,22 @@ function clickButton(obj, id)
 	else{
 		navigator.vibrate(100);
 	}
+*/
 	if(id === 'power_wav')
 	{
 		var src = document.getElementById('powerWAV');
 	}
 	else if(id === 'home_wav')
 	{
-		var src = document.getElementByIdf('homeWAV');
+		var src = document.getElementById('homeWAV');
+	}
+	else if(id === 'ok_wav')
+	{
+		var src = document.getElementById('okWAV')
+	}
+	else if(id === 'menu_wav')
+	{
+		var src = document.getElementById('menuWAV')
 	}
 	else if(id === 'up_wav')
 	{

@@ -22,7 +22,10 @@ class EventProcess:
 				return '请输入网络盒子品牌'
 			else:
 				return '请求未处理'
+		elif obj.type == 'scancode_push':
+			#return obj.ScanCodeInfo											
+			return 'scan'
 		else:
 			um = UserMsg()
 			um.get_user_basicMsg(obj)
-			return '选择一拍，遥控世界！'
+			return '获取地理信息'

@@ -60,8 +60,9 @@ def wechat_auth():
 			elif isinstance(message, EventMessage):
 				ep = EventProcess()
 				content = ep.click_event(message)
+				if content == '获取地理信息':
+					return 
 				response = wechat.response_text(content)
-
 		return make_response(response.encode('utf-8'))
 
 
@@ -74,13 +75,17 @@ def return_index():
 	left_wav = url_for('static', filename=get_wavFile.find_pos('LEFT', btnName_pos))
 	right_wav = url_for('static', filename=get_wavFile.find_pos('RIGHT', btnName_pos))
 	home_wav = url_for('static', filename=get_wavFile.find_pos('HOME', btnName_pos))
+	ok_wav = url_for('static', filename=get_wavFile.find_pos('OK', btnName_pos))
+	menu_wav = url_for('static', filename=get_wavFile.find_pos('MENU', btnName_pos))
 	return render_template('index.html',
 						 power_wav=power_wav,
 						 up_wav=up_wav,
 						 down_wav=down_wav,
 						 left_wav=left_wav,
 						 home_wav=home_wav,
-						 right_wav=right_wav)
+						 right_wav=right_wav,
+						 ok_wav=ok_wav,
+						 menu_wav=menu_wav)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)

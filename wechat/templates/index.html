@@ -69,6 +69,8 @@
 				<div class="playWAV" >	
 					<audio  src="{{ power_wav }}" id="powerWAV"></audio>
 					<audio  src="{{ home_wav }}" id="homeWAV"></audio>
+					<audio  src="{{ menu_wav }}" id="menuWAV"></audio>
+					<audio  src="{{ ok_wav }}" id="okWAV"></audio>
 					<audio  src="{{ up_wav }}" id="upWAV"></audio>
 					<audio  src="{{ down_wav }}" id="downWAV"></audio>
 					<audio  src="{{ left_wav }}" id="leftWAV"></audio>
@@ -78,13 +80,13 @@
 					<div class="line1_img">
 						<img class="line1_img1" src="/static/image/Resource/TVRemoteControl/btn_home_normal.png"  id='home_wav' onClick="clickButton(this, id)"/>
 						<img class="line1_img2" src="/static/image/Resource/TVRemoteControl/btn_turn_off.png"  id='power_wav' onClick="clickButton(this, id)"/>
-						<img class="line1_img3" src="/static/image/Resource/TVRemoteControl/btn_menu_normal.png"  onClick="clickButton()"/>			
+						<img class="line1_img3" src="/static/image/Resource/TVRemoteControl/btn_menu_normal.png" id='menu_wav'  onClick="clickButton(this, id)"/>			
 					</div>		
 				</div>
 				<div class="line2">
 					<div class="line2_0">
 					    <img  class="line2_1" src="/static/image/Resource/TVRemoteControl/remote_back.png" width="160" height="160">
-			   		    <img  class="line2_2" src="/static/image/Resource/TVRemoteControl/ok_press.jpg" width="100" height="100">	
+			   		    <img  class="line2_2" src="/static/image/Resource/TVRemoteControl/ok_press.jpg" width="100" height="100" id='ok_wav', onClick="clickButton(this, id)">	
                         		    <img class="line2_dot1" src="/static/image/Resource/TVRemoteControl/point_full.png" id='up_wav' onClick="clickButton(this, id)">
                                             <img class="line2_dot2" src="/static/image/Resource/TVRemoteControl/point_full.png" id='down_wav' onClick="clickButton(this, id)">
              			            <img class="line2_dot3" src="/static/image/Resource/TVRemoteControl/point_full.png" id='left_wav' onClick="clickButton(this, id)">

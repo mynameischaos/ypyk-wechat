@@ -57,6 +57,11 @@ menu = {
                     "name": "下载App",
                     "key": "download_app"
                 },
+                {
+                    "type": "scancode_push",
+					"name": "扫码发红包",
+					"key": "scancode",
+				},
             ]
         },
         {
