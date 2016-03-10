@@ -66,26 +66,35 @@ def wechat_auth():
 		return make_response(response.encode('utf-8'))
 
 
-@app.route('/index.html/')
+@app.route('/index.html/', methods=['GET', 'POST'])
 def return_index():
-	btnName_pos = get_wavFile.create_wavFile('TV', 'xiaomi', '小米电视')
-	power_wav = url_for('static', filename=get_wavFile.find_pos('POWER', btnName_pos))
-	up_wav = url_for('static', filename=get_wavFile.find_pos('UP', btnName_pos))
-	down_wav = url_for('static', filename=get_wavFile.find_pos('DOWN', btnName_pos))
-	left_wav = url_for('static', filename=get_wavFile.find_pos('LEFT', btnName_pos))
-	right_wav = url_for('static', filename=get_wavFile.find_pos('RIGHT', btnName_pos))
-	home_wav = url_for('static', filename=get_wavFile.find_pos('HOME', btnName_pos))
-	ok_wav = url_for('static', filename=get_wavFile.find_pos('OK', btnName_pos))
-	menu_wav = url_for('static', filename=get_wavFile.find_pos('MENU', btnName_pos))
-	return render_template('index.html',
-						 power_wav=power_wav,
-						 up_wav=up_wav,
-						 down_wav=down_wav,
-						 left_wav=left_wav,
-						 home_wav=home_wav,
-						 right_wav=right_wav,
-						 ok_wav=ok_wav,
-						 menu_wav=menu_wav)
+	# 获取请求参数
+	query = request.args
+	if query != None:
+		type = query.get('type', '')
+		brand = query.get('brand', '')
+		model = query.get('model', '')
+
+		btnName_pos = get_wavFile.create_wavFile(type, brand, model)
+		power_wav = url_for('static', filename=get_wavFile.find_pos('POWER', btnName_pos))
+		up_wav = url_for('static', filename=get_wavFile.find_pos('UP', btnName_pos))
+		down_wav = url_for('static', filename=get_wavFile.find_pos('DOWN', btnName_pos))
+		left_wav = url_for('static', filename=get_wavFile.find_pos('LEFT', btnName_pos))
+		right_wav = url_for('static', filename=get_wavFile.find_pos('RIGHT', btnName_pos))
+		home_wav = url_for('static', filename=get_wavFile.find_pos('HOME', btnName_pos))
+		ok_wav = url_for('static', filename=get_wavFile.find_pos('OK', btnName_pos))
+		menu_wav = url_for('static', filename=get_wavFile.find_pos('MENU', btnName_pos))
+		return render_template('index.html',
+							 power_wav=power_wav,
+							 up_wav=up_wav,
+							 down_wav=down_wav,
+							 left_wav=left_wav,
+							 home_wav=home_wav,
+							 right_wav=right_wav,
+							 ok_wav=ok_wav,
+							 menu_wav=menu_wav)
+	else:
+		return 'www.yipaiyaokong.com'
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)
