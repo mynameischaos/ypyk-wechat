@@ -1,0 +1,66 @@
+}
+n": [
+        {
+            "name": "下载应用",
+            "sub_button": [
+                {
+                    "type": "click",
+                    "name": "下载App",
+                    "key": "application"
+                },
+                {
+                    "type": "view",
+                    "name": "使用指南",
+                    "url": "http://www.yipaiyaokong.com"
+                },
+                {
+                    "type": "view",
+                    "name": "购买PI",
+                    "url": "http://aunt.sinaapp.com/demo/oauth2/index.php"
+                }
+            ]
+        },
+        {
+            "name": "一拍遥控",
+            "sub_button": [
+                {
+                    "type": "click",
+                    "name": "我的遥控",
+                    "key": "rselfmenu_0_0"
+                },
+                {
+                    "type": "click",
+                    "name": "遥控管理",
+                    "key": "rselfmenu_0_1"
+                },
+                {
+                    "type": "pic_photo_or_album",
+                    "name": "拍照或相册发图",
+                    "key": "rselfmenu_1_1"
+                }
+
+            ]
+        },
+        {
+            "name": "联系我们",
+               "sub_button": [
+                {
+                    "type": "view",
+                    "name": "关于我们",
+                     "url": "http://www.yipaiyaokong.com"
+                },
+                {
+                    "type": "view",
+                    "name": "反馈建议",
+                     "url": "http://www.yipaiyaokong.com"
+                },
+                {
+                    "type": "view",
+                    "name": "投资加盟",
+                     "url": "http://www.yipaiyaokong.com"
+                }
+
+            ]
+        }
+    ]
+}

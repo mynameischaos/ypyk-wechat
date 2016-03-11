@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>一拍遥控</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	
+    
+    <link href="/static/css/remote_control.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/program_control.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/body.css" rel="stylesheet" type="text/css"/>
+	
+    <script src="/static/js/remote_control.js"> </script>
+    <script src="/static/js/orient.js"> </script>
+    <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
+    <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -->
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="/static/css/swiper.min.css" />
+
+    <!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+		width:100%;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+	 /*
+	 
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        Center slide text vertically 
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;*/
+    }
+    </style>
+</head>
+<body id="rotate90">
+	<div id="bodyBG">
+		<img src="/static/image/Resource/Common/bg_5.jpg" class="stretch"  alt=""/>	
+	</div>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+			<!-- 第一页 -->
+        	    <div class="swiper-slide">
+			
+				<div class="playWAV" >	
+					<audio  src="{{ power_wav }}" id="powerWAV"></audio>
+					<audio  src="{{ home_wav }}" id="homeWAV"></audio>
+					<audio  src="{{ menu_wav }}" id="menuWAV"></audio>
+					<audio  src="{{ ok_wav }}" id="okWAV"></audio>
+					<audio  src="{{ up_wav }}" id="upWAV"></audio>
+					<audio  src="{{ down_wav }}" id="downWAV"></audio>
+					<audio  src="{{ left_wav }}" id="leftWAV"></audio>
+					<audio  src="{{ right_wav }}" id="rightWAV"></audio>
+				</div>
+				<div class="line1">
+					<div class="line1_img">
+						<img class="line1_img1" src="/static/image/Resource/TVRemoteControl/btn_home_normal.png"  id='home_wav' onClick="clickButton(this, id)"/>
+						<img class="line1_img2" src="/static/image/Resource/TVRemoteControl/btn_turn_off.png"  id='power_wav' onClick="clickButton(this, id)"/>
+						<img class="line1_img3" src="/static/image/Resource/TVRemoteControl/btn_menu_normal.png" id='menu_wav'  onClick="clickButton(this, id)"/>			
+					</div>		
+				</div>
+				<div class="line2">
+					<div class="line2_0">
+					    <img  class="line2_1" src="/static/image/Resource/TVRemoteControl/remote_back.png" width="160" height="160">
+			   		    <img  class="line2_2" src="/static/image/Resource/TVRemoteControl/ok_press.jpg" width="100" height="100" id='ok_wav', onClick="clickButton(this, id)">	
+                        		    <img class="line2_dot1" src="/static/image/Resource/TVRemoteControl/point_full.png" id='up_wav' onClick="clickButton(this, id)">
+                                            <img class="line2_dot2" src="/static/image/Resource/TVRemoteControl/point_full.png" id='down_wav' onClick="clickButton(this, id)">
+             			            <img class="line2_dot3" src="/static/image/Resource/TVRemoteControl/point_full.png" id='left_wav' onClick="clickButton(this, id)">
+                                            <img class="line2_dot4" src="/static/image/Resource/TVRemoteControl/point_full.png" id='right_wav' onClick="clickButton(this, id)">       
+					</div>			
+				</div>
+				<div class="line3">
+                 	            <img src="/static/image/Resource/TVRemoteControl/btn_back_press.png" width="60" height="60">
+                                </div>	
+				<div class="line4">
+					<p> <font size="-1" color="#000000">使用手机音量键调节节目音量 </font> </p>
+				</div>
+		</div>
+			<!-- 第二页 -->
+       		<div class="swiper-slide">
+			<div class="playWAV">	
+				<audio src="" id="playWAV">
+					Your browser does not support the audio tag.			
+				</audio>
+			</div>
+			<!-- 顶部按钮 -->
+			<div class="line1">
+			    <div class="line1_img">
+				<img class="line1_img1" src="/static/image/Resource/TVRemoteControl/btn_mute_normal.png" width="55" height="50"/>	
+				<img src="/static/image/Resource/TVRemoteControl/btn_turn_off.png" width="55" height="50"/>		
+				<img class="line1_img3" src="/static/image/Resource/TVRemoteControl/tv_btn_normal.png" width="55" height="50"/>	
+			    </div>
+			</div>
+			
+			
+		   <!-- 中间按钮 -->
+           	<div class="middle">
+                	<div class="middle_0">
+                	     <img id="middle_1" src="/static/image/Resource/TVRemoteControl/rect_round.png" width="55" height="130"/>
+                             <img id="middle_1_up" src="/static/image/Resource/TVRemoteControl/btn_up_normal.png" />  
+                             <img id="middle_1_down" src="/static/image/Resource/TVRemoteControl/btn_down_normal.png"/>
+                             <img id="middle_2" src="/static/image/Resource/TVRemoteControl/rect_round.png" width="55px" height="130px"/>
+                             <img id="middle_2_program" src="/static/image/Resource/TVRemoteControl/program_normal.png"/ > 
+		       </div>
+		</div>
+			<!-- 底部按钮 -->
+		<div class="program_bottom">
+			<img  src="/static/image/Resource/TVRemoteControl/btn_num_normal.png" width="60px" height="60px"/>						     </div>
+        </div>
+    </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+
+    <!-- Swiper JS -->
+    <script src="/static/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    });
+    </script>
+</body>
+</html>
