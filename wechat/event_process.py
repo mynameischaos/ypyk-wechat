@@ -4,6 +4,7 @@
 import sys
 from tool.get_user_msg import UserMsg
 from python_db.pyDB import pyDB
+from tool import get_wechat
 
 class EventProcess:
 	def __init__(self):
@@ -13,14 +14,14 @@ class EventProcess:
             # click事件
             if obj.type == 'click':
                 if obj.key == 'television':
-                    res = self.click_tv(obj)
+                  state, res = self.click_tv(obj)
                 elif obj.key == 'cable':
                     res = self.click_cable(obj)
                 elif obj.key == 'network_box':
                     res = self.click_network_box(obj)
                 elif obj.key == 'air_condition':
                     res = self.click_air_condition(obj)
-                return res
+                return state, res
 
 
             # subscribe 关注事件
@@ -39,6 +40,7 @@ class EventProcess:
                 um = UserMsg()
                 openid = um.get_openid(obj)
                 pydb = pyDB()
+                pydb.set_if_follow(openid) # TODO bug fix
                 pydb.clean_user(openid)
             # 上报地理位置事件
             else:
@@ -53,14 +55,21 @@ class EventProcess:
             # 查询是否已经添加设备
             pydb = pyDB()
             pydb.clean_brand_model_type(openid)
-            state = pydb.find_user_device('TV', openid)
+            state, Type, brand, model = pydb.find_user_device('TV', openid)
             # 假设state = False
-            state = False
             if state == True:
-                return '电视的操作界面URL'
+                url = 'http://weixin.yipairemote.com/index.html?type=' + Type + '&brand=' + brand + '&model=' + model 
+                response = [
+                        {
+                            'title': '一拍遥控', 
+                            'description': '欢迎使用属于您自己的遥控器', 
+                            'url': url
+                        },        
+                        ]
+                return 'news', response
             else:
                 result = pydb.find_request_state('TV', openid)
-                return result
+                return 'text', result
 
         def click_air_condition(self, obj):
             um = UserMsg()

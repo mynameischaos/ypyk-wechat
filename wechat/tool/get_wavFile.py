@@ -23,6 +23,8 @@ def get_encode(type, brand, model):
 
 	res_data = urllib2.urlopen(req)
 	res =  res_data.read()
+        if len(res.strip()) == 0:
+            return None
 	#print res
 	res_dict = eval(res)
 	return res_dict
@@ -60,7 +62,7 @@ def wav_file_gen(encoding_type, ir_code, frequency, signal_strength, btn_name, b
     # Delete Older Path
     for day in range(1, 6):
         date_src = str(today - datetime.timedelta(days=day))
-        old_date_name = (str2md5(date_src))[0:10]
+        old_date_name = (str2md5(str2md5(date_src)))[0:10]
         old_name = path_header + old_date_name
         if os.path.isdir(old_name):
             rm_older = "rm -rf " + old_name
@@ -123,5 +125,4 @@ def find_pos(btnName, btnName_pos):
 
 # 测试
 if __name__ == '__main__':
-	print create_wavFile('TV', 'xiaomi', '小米电视')
-	
+    create_wavFile('TV','skyworth','YK-60jb')

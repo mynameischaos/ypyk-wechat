@@ -8,7 +8,7 @@ from tool.get_user_msg import UserMsg
 from python_db.pyDB import pyDB
 import json
 import requests
-
+from tool import get_wavFile
 # 图灵机器人的 API KEY
 # www.tuling123.com申请领取key
 TURING_API_KEY = 'b4e43d544c3e0c5315453ba01fc7ee63'
@@ -53,15 +53,30 @@ class MsgProcess:
                 # 查询brand设置model
                 res2 = pydb.find_brand_set_model(obj.content, openid)
                 if res2:
-                    res3 = pydb.clean_brand_model_type(openid)
-                    if res3 == 'TV':
-                        return wechat.response_text('电视遥控器操作界面')
-                    elif res3 == 'air_condition':
-                        return wechat.response_text('空调遥控器操作界面')
-                    elif res3 == 'network_box':
-                        return wechat.response_text('网络盒子遥控器操作界面')
-                    elif res3 == 'cable':
-                        return wechat.response_text('机顶盒遥控器操作界面')
+                    Type, brand, model = pydb.get_type_brand_model(openid)
+                    btn_encode = get_wavFile.get_encode(Type, brand, model)
+                    if btn_encode != None:
+                        res3 = pydb.clean_brand_model_type(openid)
+                        if res3 == 'TV':
+                            pydb.add_wechat_user_device(openid, Type, brand, model)
+                            url = 'http://weixin.yipairemote.com/index.html?type=' + Type + '&brand=' + brand + '&model=' + model
+                            return wechat.response_news([
+                                   {
+                                        'title': u'一拍遥控',
+                                        'description': u'属于您自己的遥控器',
+                                        'url': url
+                                    }
+                                    ])
+
+                        elif res3 == 'air_condition':
+                            return wechat.response_text('空调遥控器操作界面')
+                        elif res3 == 'network_box':
+                            return wechat.response_text('网络盒子遥控器操作界面')
+                        elif res3 == 'cable':
+                            return wechat.response_text('机顶盒遥控器操作界面')
+                    else:
+                        res3 = pydb.clean_brand_model_type(openid)
+                        return wechat.response_text('您输入的无效请重新开始')
                 else:
                     if res:
                         pydb.set_brand(obj.content, openid)
