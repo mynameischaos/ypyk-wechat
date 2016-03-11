@@ -10,7 +10,12 @@ class UserMsg:
 		openid = obj.source
 		return openid 
 	# 通过openid获取用户详细信息
+<<<<<<< HEAD
 	def get_user_detailMsg(self, openid):
+=======
+	def get_user_detailMsg(self, obj):
+		openid = self.get_openid(obj)
+>>>>>>> 48f33b10e0460d1b1213af2c3d17ecd3f84e0ac5
 		wechat = get_wechat.get_wechat()
 		data = wechat.get_user_info(openid, lang='zh_CN')
 		return data
@@ -35,5 +40,9 @@ class UserMsg:
 		fp.close()
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     um = UserMsg()
     print um.get_user_detailMsg('oNevcspgKodRqe7yevoFMKAa0YCk')
+=======
+	print get_wechat.get_wechat()
+>>>>>>> 48f33b10e0460d1b1213af2c3d17ecd3f84e0ac5
